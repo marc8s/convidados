@@ -1,6 +1,8 @@
 package com.example.convidados.service.repository
 
+import android.content.ContentValues
 import android.content.Context
+import com.example.convidados.service.constants.DataBaseConstants
 import com.example.convidados.service.model.GuestModel
 
 //CRUD
@@ -34,7 +36,18 @@ class GuestRepository private constructor(context: Context){
         val list: MutableList<GuestModel> = ArrayList()
         return list
     }
-    fun save(guest: GuestModel){
+    fun save(guest: GuestModel): Boolean{
+        return try{
+            val db = mGuestDataBaseHelper.writableDatabase
+            val contentValues = ContentValues()
+            contentValues.put(DataBaseConstants.GUEST.COLUMNS.NAME, guest.name)
+            contentValues.put(DataBaseConstants.GUEST.COLUMNS.PRESENCE, guest.presence)
+
+            db.insert(DataBaseConstants.GUEST.TABLE_NAME, null, contentValues)
+            true
+        }catch (e: Exception){
+            false
+        }
 
     }
     fun update(guest: GuestModel){
