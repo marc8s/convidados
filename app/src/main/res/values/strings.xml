@@ -15,4 +15,6 @@
     <string name="absent">Ausente</string>
     <string name="confirmacao">Confirmação</string>
     <string name="save">Salvar</string>
+    <string name="sucesso">Sucesso</string>
+    <string name="falha">Falha</string>
 </resources>
