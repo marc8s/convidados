@@ -19,7 +19,7 @@ class GuestFormViewModel(application: Application): AndroidViewModel(application
 
     fun save(name: String, presence: Boolean){
         val guest =
-            GuestModel(name, presence)
+            GuestModel(name = name, presence = presence)
         mGuestRepository.save(guest)
     }
 }
