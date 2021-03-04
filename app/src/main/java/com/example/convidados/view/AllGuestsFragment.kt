@@ -40,9 +40,14 @@ class AllGuestsFragment : Fragment() {
 
         observer()
 
-        allGuestsViewModel.load()
+
 
         return root
+    }
+    //atualiza lista exibida apos adição de novo convidado
+    override fun onResume() {
+        super.onResume()
+        allGuestsViewModel.load()
     }
 
     private fun observer(){
