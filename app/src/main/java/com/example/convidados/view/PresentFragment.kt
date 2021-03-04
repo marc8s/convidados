@@ -22,7 +22,7 @@ class PresentFragment : Fragment() {
     ): View? {
         presentViewModel =
                 ViewModelProvider(this).get(PresentViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
+        val root = inflater.inflate(R.layout.fragment_present, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
         presentViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
