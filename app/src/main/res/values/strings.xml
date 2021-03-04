@@ -18,4 +18,21 @@
     <string name="sucesso">Sucesso</string>
     <string name="falha">Falha</string>
 
+    <string name="cadastro_convidado">Cadastro de convidados</string>
+    <string name="ausentes">Ausentes</string>
+    <string name="presentes">Presentes</string>
+    <string name="todos_convidados">Todos convidados</string>
+    <string name="salvar">Salvar</string>
+    <string name="ausente">Ausente</string>
+
+    <string name="nao_confirmado">Não confirmado</string>
+
+    <string name="nome">Nome</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="remocao_convidado">Remoção de convidado</string>
+    <string name="deseja_remover">Deseja remover convidado da lista?</string>
+    <string name="remover">Remover</string>
+    <string name="removido_com_sucesso">Convidado removido com sucesso.</string>
+    <string name="total">Total</string>
+
 </resources>

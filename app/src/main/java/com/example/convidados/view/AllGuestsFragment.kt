@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,11 +15,10 @@ import com.example.convidados.service.constants.GuestConstants
 import com.example.convidados.view.adapter.GuestAdapter
 import com.example.convidados.view.listener.GuestListener
 import com.example.convidados.viewmodel.AllGuestsViewModel
-import kotlinx.android.synthetic.main.fragment_all.*
 
 class AllGuestsFragment : Fragment() {
 
-    private lateinit var allGuestsViewModel: AllGuestsViewModel
+    private lateinit var mViewModel: AllGuestsViewModel
     private val mAdapter: GuestAdapter = GuestAdapter()
     private lateinit var mListener: GuestListener
 
@@ -29,7 +27,7 @@ class AllGuestsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        allGuestsViewModel =
+        mViewModel =
                 ViewModelProvider(this).get(AllGuestsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_all, container, false)
 
@@ -51,6 +49,11 @@ class AllGuestsFragment : Fragment() {
 
                 startActivity(intent)
             }
+
+            override fun onDelete(id: Int) {
+                mViewModel.delete(id)
+                mViewModel.load()
+            }
         }
         mAdapter.attachListener(mListener)
         //trazer lista de usuarios
@@ -63,11 +66,11 @@ class AllGuestsFragment : Fragment() {
     //atualiza lista exibida apos adição de novo convidado
     override fun onResume() {
         super.onResume()
-        allGuestsViewModel.load()
+        mViewModel.load()
     }
 
     private fun observer(){
-        allGuestsViewModel.guestList.observe(viewLifecycleOwner, Observer {
+        mViewModel.guestList.observe(viewLifecycleOwner, Observer {
             mAdapter.updateGuests(it)
 
         })
