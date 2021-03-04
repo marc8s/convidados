@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_all.*
 class AllGuestsFragment : Fragment() {
 
     private lateinit var allGuestsViewModel: AllGuestsViewModel
+    private val mAdapter: GuestAdapter = GuestAdapter()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -34,8 +35,20 @@ class AllGuestsFragment : Fragment() {
         //2 - Definir um layout
         recycler.layoutManager = LinearLayoutManager(context)
         //3 - Definir um adapter
-        recycler.adapter = GuestAdapter()
+        recycler.adapter = mAdapter
+        //trazer lista de usuarios
+
+        observer()
+
+        allGuestsViewModel.load()
 
         return root
+    }
+
+    private fun observer(){
+        allGuestsViewModel.guestList.observe(viewLifecycleOwner, Observer {
+            mAdapter.updateGuests(it)
+
+        })
     }
 }
